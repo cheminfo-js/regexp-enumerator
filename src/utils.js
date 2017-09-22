@@ -7,9 +7,9 @@ call[ret.types.CHAR] = onChar;
 export function checkCharSet(charSet) {
     var tokens = charSet.stack;
     var set = new Set();
-    for(var i = 0; i < set.length; ++i) {
+    for (var i = 0; i < set.length; ++i) {
         var currentToken = tokens[i];
-        if(!allowedTypes.includes(currentToken.type)) {
+        if (!allowedTypes.includes(currentToken.type)) {
             throw new RangeError('charSet must be a regexp of letters!');
         }
 
@@ -20,7 +20,7 @@ export function checkCharSet(charSet) {
 }
 
 export function pushArray(arr, toPush) {
-    for(var i = 0; i < toPush.length; ++i) {
+    for (var i = 0; i < toPush.length; ++i) {
         arr.push(toPush[i]);
     }
 }

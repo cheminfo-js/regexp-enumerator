@@ -5,7 +5,7 @@ import {checkCharSet, pushArray} from './utils';
  * @class Generator
  */
 export default class Generator {
-    constructor(regexp, options={}) {
+    constructor(regexp, options = {}) {
         var {
             infSize = 10,
             charSet = /[a-z]/
@@ -24,15 +24,15 @@ export default class Generator {
         var isGroup = tokens.type === ret.types.ROOT || tokens.type === ret.types.GROUP;
         var newBuild = [];
 
-        if(tokens.options) {
+        if (tokens.options) {
             var options = tokens.options;
-            for(var i = 0; i < options.length; ++i) {
+            for (var i = 0; i < options.length; ++i) {
                 pushArray(newBuild, this._generate(options[i], build));
             }
             build = newBuild;
         } else {
             var stack = isGroup ? tokens.stack : tokens;
-            for(var i = 0; i < stack.length; ++i) {
+            for (i = 0; i < stack.length; ++i) {
                 var currentToken = stack[i];
                 newBuild = [];
                 switch (currentToken.type) {
@@ -54,12 +54,17 @@ export default class Generator {
                         break;
                     case ret.types.REPETITION:
                         j = 0;
-                        for(; j < currentToken.min; ++j) {
-                            build = newBuild = this._generate([currentToken.value], build);
+                        if (currentToken.min === 0) {
+                            build = newBuild = [''];
+                        } else {
+                            for (; j < currentToken.min; ++j) {
+                                build = newBuild = this._generate([currentToken.value], build);
+                            }
                         }
 
                         // from min to max
-                        for(; j < currentToken.max; ++j) {
+                        var max = currentToken.max !== Infinity ? currentToken.max : this.infSize;
+                        for (; j < max; ++j) {
                             pushArray(newBuild, this._generate([currentToken.value], newBuild));
                         }
 
