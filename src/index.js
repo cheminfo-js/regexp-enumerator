@@ -47,13 +47,13 @@ export default class Generator {
                         break;
                     case ret.types.SET:
                         var tokenSet;
-                        if(currentToken.not) {
+                        if (currentToken.not) {
                             var currentTokenMap = createRegexpMap(currentToken.set);
                             var universe = Object.keys(this.charMap);
                             var availableTokens = [];
-                            for(var j = 0; j < universe.length; ++j) {
+                            for (var j = 0; j < universe.length; ++j) {
                                 var universeToken = universe[j];
-                                if(currentTokenMap[universeToken] === undefined) {
+                                if (currentTokenMap[universeToken] === undefined) {
                                     availableTokens.push(this.charMap[universeToken]);
                                 }
                             }
@@ -62,7 +62,7 @@ export default class Generator {
                             tokenSet = currentToken.set;
                         }
 
-                        for(j = 0; j < tokenSet.length; ++j) {
+                        for (j = 0; j < tokenSet.length; ++j) {
                             pushArray(newBuild, this._generate([tokenSet[j]], build));
                         }
                         break;

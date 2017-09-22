@@ -51,12 +51,32 @@ describe('test generator', () => {
     });
 
     it('Set generator', () => {
-        var gen = new Generator(/[^ab]/, {
-            infSize: 5,
+        var gen = new Generator(/[^ab]*/, {
+            infSize: 2,
             charSet: /[a-f]/
         });
-        var output= gen.generate().sort();
-        var expected = ['c', 'd', 'e', 'f'];
+        var output = gen.generate().sort();
+        var expected = ['',
+            'c',
+            'cc',
+            'cd',
+            'ce',
+            'cf',
+            'd',
+            'dc',
+            'dd',
+            'de',
+            'df',
+            'e',
+            'ec',
+            'ed',
+            'ee',
+            'ef',
+            'f',
+            'fc',
+            'fd',
+            'fe',
+            'ff'];
         expect(output).toEqual(expected);
     });
 });
