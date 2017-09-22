@@ -4,19 +4,42 @@ const allowedTypes = [ret.types.CHAR];
 const call = {};
 call[ret.types.CHAR] = onChar;
 
-export function checkCharSet(charSet) {
-    var tokens = charSet.stack;
-    var set = new Set();
-    for (var i = 0; i < set.length; ++i) {
+export function createCharMap(tokens) {
+    var map = {};
+    for (var i = 0; i < tokens.length; ++i) {
         var currentToken = tokens[i];
         if (!allowedTypes.includes(currentToken.type)) {
             throw new RangeError('charSet must be a regexp of letters!');
         }
 
-        call[currentToken.type](set, currentToken);
+        call[currentToken.type](map, currentToken);
     }
 
-    return set;
+    return map;
+}
+
+// only support chars and ranges
+export function createRegexpMap(set) {
+    var map = {};
+    for(var i = 0; i < set.length; ++i) {
+        var currentToken = set[i];
+        switch (currentToken.type) {
+            case ret.types.CHAR:
+                map[currentToken.value] = currentToken;
+                break;
+            case ret.types.RANGE:
+                for(var j = currentToken.from; j <= currentToken.to; ++j) {
+                    map[j] = {
+                        type: ret.types.CHAR,
+                        value: j
+                    }
+                }
+                break;
+            default:
+        }
+    }
+
+    return map;
 }
 
 export function pushArray(arr, toPush) {
@@ -25,6 +48,6 @@ export function pushArray(arr, toPush) {
     }
 }
 
-function onChar(set, token) {
-    set.add(token.value);
+function onChar(map, token) {
+    map[token.value] = token;
 }

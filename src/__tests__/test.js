@@ -2,7 +2,7 @@ import Generator from '..';
 
 describe('test generator', () => {
     it('Recursive pipes and groups', () => {
-        var gen = new Generator(/a(b|c(d)|e(f|d))b(g|h)/, {});
+        var gen = new Generator(/a(b|c(d)|e(f|d))b(g|h)/);
         var output = gen.generate().sort();
         var expected = ['abbg',
             'abbh',
@@ -47,6 +47,16 @@ describe('test generator', () => {
         });
         var output = gen.generate().sort();
         var expected = ['a', 'aa', 'aaa'];
+        expect(output).toEqual(expected);
+    });
+
+    it('Set generator', () => {
+        var gen = new Generator(/[^ab]/, {
+            infSize: 5,
+            charSet: /[a-f]/
+        });
+        var output= gen.generate().sort();
+        var expected = ['c', 'd', 'e', 'f'];
         expect(output).toEqual(expected);
     });
 });
