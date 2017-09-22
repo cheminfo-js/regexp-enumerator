@@ -50,7 +50,18 @@ describe('test generator', () => {
         expect(output).toEqual(expected);
     });
 
-    it('Set generator', () => {
+    it('Set operator', () => {
+        var gen = new Generator(/[ab]*/, {
+            infSize: 3,
+            charSet: /[a-f]/
+        });
+        var output = gen.generate().sort();
+        var expected = ['', 'a', 'aa', 'aaa', 'aab', 'ab', 'aba', 'abb', 'b', 'ba', 'baa', 'bab', 'bb', 'bba', 'bbb'];
+        expect(output).toEqual(expected);
+
+    });
+
+    it('Set with negate operator', () => {
         var gen = new Generator(/[^ab]*/, {
             infSize: 2,
             charSet: /[a-f]/
