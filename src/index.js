@@ -77,12 +77,9 @@ export default class Generator {
                         break;
                     case ret.types.REPETITION:
                         j = 0;
-                        if (currentToken.min === 0) {
-                            newBuild = build
-                        } else {
-                            for (; j < currentToken.min; ++j) {
-                                build = newBuild = this._generate([currentToken.value], build);
-                            }
+                        newBuild = build;
+                        for (; j < currentToken.min; ++j) {
+                            build = newBuild = this._generate([currentToken.value], build);
                         }
 
                         // from min to max
