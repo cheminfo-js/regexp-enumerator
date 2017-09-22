@@ -78,7 +78,7 @@ export default class Generator {
                     case ret.types.REPETITION:
                         j = 0;
                         if (currentToken.min === 0) {
-                            build = newBuild = [''];
+                            newBuild = build
                         } else {
                             for (; j < currentToken.min; ++j) {
                                 build = newBuild = this._generate([currentToken.value], build);
@@ -91,7 +91,7 @@ export default class Generator {
                             pushArray(newBuild, this._generate([currentToken.value], newBuild));
                         }
 
-                        newBuild = newBuild.filter((x, i, a) => a.indexOf(x) === i);
+                        newBuild = Array.from(new Set(newBuild));
                         break;
                     default:
                         throw new Error('Unsupported type:', currentToken.type);

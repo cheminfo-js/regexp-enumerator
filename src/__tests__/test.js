@@ -90,4 +90,14 @@ describe('test generator', () => {
             'ff'];
         expect(output).toEqual(expected);
     });
+
+    it('? operator', () => {
+        var gen = new Generator(/ab?c?/, {
+            infSize: 2,
+            charSet: /[a-f]/
+        });
+        var output = gen.generate().sort();
+        var expected = ['a', 'ab', 'abc', 'ac'];
+        expect(output).toEqual(expected);
+    });
 });
