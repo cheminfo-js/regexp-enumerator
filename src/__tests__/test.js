@@ -15,4 +15,20 @@ describe('test generator', () => {
 
         expect(output).toEqual(expected);
     });
+
+    it('Repetitions with min value', () => {
+        var gen = new Generator(/(a|b){3}/, {});
+        var output = gen.generate().sort();
+        var expected = [ 'aaa', 'aab', 'aba', 'abb', 'baa', 'bab', 'bba', 'bbb' ];
+
+        expect(output).toEqual(expected);
+    });
+
+    it('Repetitions with min and max value', () => {
+        var gen = new Generator(/(a|b){1,2}/, {});
+        var output = gen.generate().sort();
+        var expected = [ 'a', 'aa', 'ab', 'b', 'ba', 'bb' ];
+
+        expect(output).toEqual(expected)
+    });
 });

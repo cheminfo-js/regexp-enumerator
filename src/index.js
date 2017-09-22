@@ -52,9 +52,23 @@ export default class Generator {
                             pushArray(newBuild, build.map(elem => elem + currentChar));
                         }
                         break;
+                    case ret.types.REPETITION:
+                        j = 0;
+                        for(; j < currentToken.min; ++j) {
+                            build = newBuild = this._generate([currentToken.value], build);
+                        }
+
+                        // from min to max
+                        for(; j < currentToken.max; ++j) {
+                            pushArray(newBuild, this._generate([currentToken.value], newBuild));
+                        }
+
+                        newBuild = newBuild.filter((x, i, a) => a.indexOf(x) === i);
+                        break;
                     default:
                         throw new Error('Unsupported type:', currentToken.type);
                 }
+
                 build = newBuild;
             }
         }
