@@ -1,0 +1,41 @@
+{
+  "name": "exp-generator",
+  "version": "0.0.0",
+  "description": "Generate all possible combinations given a expresion",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "eslint": "eslint src",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepublishOnly": "rollup -c",
+    "test": "run-s testonly eslint",
+    "testonly": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/exp-generator.git"
+  },
+  "keywords": [],
+  "author": "Jefferson Hernandez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheminfo/exp-generator/issues"
+  },
+  "homepage": "https://github.com/cheminfo/exp-generator#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "eslint": "^4.7.2",
+    "eslint-config-cheminfo": "^1.8.0",
+    "eslint-plugin-no-only-tests": "^2.0.0",
+    "jest": "^21.1.0",
+    "npm-run-all": "^4.1.1",
+    "rollup": "^0.50.0"
+  }
+}
