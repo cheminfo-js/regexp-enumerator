@@ -1,5 +1,5 @@
 import ret from 'ret';
-import {createCharMap, pushArray, createRegexpMap} from './utils';
+import {createCharMap, pushArray, createRegexpMap, preprocessRegExp, postProcess} from './utils';
 
 /**
  * @class Generator
@@ -11,7 +11,9 @@ export default class Generator {
             charSet = /[a-z]/
         } = options;
 
-        this.tokens = ret(regexp.source);
+        var source = preprocessRegExp(typeof regexp !== 'string' ? regexp.source : regexp);
+
+        this.tokens = ret(source);
         this.infSize = infSize;
         var tokens = ret(charSet.source);
         if (tokens.stack[0].set) {
@@ -22,7 +24,11 @@ export default class Generator {
     }
 
     generate() {
-        return this._generate(this.tokens, ['']);
+        var output = this._generate(this.tokens, ['']);
+        for(var i = 0; i < output.length; ++i) {
+            output[i] = postProcess(output[i]);
+        }
+        return output;
     }
 
     _generate(tokens, build) {

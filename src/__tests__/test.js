@@ -1,33 +1,11 @@
 import Generator from '..';
+import {} from '';
 
 describe('test generator', () => {
     it('Recursive pipes and groups', () => {
         var gen = new Generator(/a(b|c(d)|e(f|d))b(g|h)/);
         var output = gen.generate().sort();
-        var expected = ['abbg',
-            'abbh',
-            'acdbg',
-            'acdbh',
-            'aedbg',
-            'aedbh',
-            'aefbg',
-            'aefbh'];
-
-        expect(output).toEqual(expected);
-    });
-
-    it('Repetitions with min value', () => {
-        var gen = new Generator(/(a|b){3}/, {});
-        var output = gen.generate().sort();
-        var expected = ['aaa', 'aab', 'aba', 'abb', 'baa', 'bab', 'bba', 'bbb'];
-
-        expect(output).toEqual(expected);
-    });
-
-    it('Repetitions with min and max value', () => {
-        var gen = new Generator(/(a|b){1,2}/, {});
-        var output = gen.generate().sort();
-        var expected = ['a', 'aa', 'ab', 'b', 'ba', 'bb'];
+        var expected = ['a(b)b(g)', 'a(b)b(h)', 'a(c(d))b(g)', 'a(c(d))b(h)', 'a(e(d))b(g)', 'a(e(d))b(h)', 'a(e(f))b(g)', 'a(e(f))b(h)'];
 
         expect(output).toEqual(expected);
     });
@@ -100,4 +78,38 @@ describe('test generator', () => {
         var expected = ['a', 'ab', 'abc', 'ac'];
         expect(output).toEqual(expected);
     });
+
+    it('Molecule samples', () => {
+        var input = [
+            /HSer(H-1PO3|)OH/,
+            /HAla(H-1PO3|)Gly(H-1PO3|)Pro(H-1PO3|)OH/,
+            /HCys(H-1Cys(Gly|Ala)|Ala)OH/,
+            "HCys(C(Gly|Ala10)|C{50,50}|C{90,10})OH"
+        ];
+
+        var expectedOutput = [
+            // case 1
+            ['HSer(H-1PO3)OH', 'HSerOH'],
+            // case 2
+            ['HAla(H-1PO3)Gly(H-1PO3)Pro(H-1PO3)OH',
+                'HAla(H-1PO3)Gly(H-1PO3)ProOH',
+                'HAla(H-1PO3)GlyPro(H-1PO3)OH',
+                'HAla(H-1PO3)GlyProOH',
+                'HAlaGly(H-1PO3)Pro(H-1PO3)OH',
+                'HAlaGly(H-1PO3)ProOH',
+                'HAlaGlyPro(H-1PO3)OH',
+                'HAlaGlyProOH'],
+            // case 3
+            [ 'HCys(Ala)OH', 'HCys(H-1Cys(Ala))OH', 'HCys(H-1Cys(Gly))OH' ],
+            // case 4
+            ['HCys(C(Ala10))OH',
+                'HCys(C(Gly))OH',
+                'HCys(C{50,50})OH',
+                'HCys(C{90,10})OH']
+        ];
+
+        for(var i = 0; i < input.length; ++i) {
+            expect(new Generator(input[i]).generate().sort()).toEqual(expectedOutput[i]);
+        }
+    })
 });

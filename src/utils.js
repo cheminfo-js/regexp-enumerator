@@ -48,6 +48,20 @@ export function pushArray(arr, toPush) {
     }
 }
 
+export function preprocessRegExp(string) {
+    // parenthesis replace
+    string = string.replace(/\(/g, '\\((');
+    string = string.replace(/\)/g, ')\\)');
+    // curly braces replace
+    string = string.replace(/{/g, '\\{');
+    string = string.replace(/}/g, '\\}');
+    return string;
+}
+
+export function postProcess(string) {
+    return string.replace(/\(\)/g, '');
+}
+
 function onChar(map, token) {
     map[token.value] = token;
 }
