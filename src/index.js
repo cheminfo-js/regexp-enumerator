@@ -9,7 +9,7 @@ import {createCharMap, pushArray, createRegexpMap} from './utils';
  * @param {number} [options.maxSize=10] - max string size of the generated output.
  * @return {Array} - generated string given the regular expression.
  */
-export function generateRegExp(regexp, options = {}) {
+export default function enumerateRegExp(regexp, options = {}) {
     var {
         maxSize = 10,
         universe = /[a-z]/
