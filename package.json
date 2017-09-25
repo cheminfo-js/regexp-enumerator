@@ -1,5 +1,5 @@
 {
-  "name": "string-generator",
+  "name": "regexp-string-generator",
   "version": "0.0.0",
   "description": "Generate all possible combinations given a regular expression",
   "main": "lib/index.js",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo/string-generator.git"
+    "url": "git+https://github.com/cheminfo/regexp-string-generator.git"
   },
   "keywords": [],
   "author": "Jefferson Hernandez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo/string-generator/issues"
+    "url": "https://github.com/cheminfo/regexp-string-generator/issues"
   },
-  "homepage": "https://github.com/cheminfo/string-generator#readme",
+  "homepage": "https://github.com/cheminfo/regexp-string-generator#readme",
   "jest": {
     "testEnvironment": "node"
   },
