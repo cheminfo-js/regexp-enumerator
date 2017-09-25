@@ -11,8 +11,7 @@ export default class Generator {
             charSet = /[a-z]/
         } = options;
 
-        var source = preprocessRegExp(typeof regexp !== 'string' ? regexp.source : regexp);
-
+        var source = typeof regexp === 'string' ? regexp : regexp.source;
         this.tokens = ret(source);
         this.infSize = infSize;
         var tokens = ret(charSet.source);
@@ -24,11 +23,7 @@ export default class Generator {
     }
 
     generate() {
-        var output = this._generate(this.tokens, ['']);
-        for(var i = 0; i < output.length; ++i) {
-            output[i] = postProcess(output[i]);
-        }
-        return output;
+        return this._generate(this.tokens, ['']);
     }
 
     _generate(tokens, build) {
