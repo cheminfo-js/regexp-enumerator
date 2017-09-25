@@ -106,7 +106,7 @@ describe('test generator', () => {
     it('throw error on bad selected universe', () => {
 
         expect(() => generate('[ab]', {
-                universe: /a{1,3}/
-            })).toThrow(RangeError);
-    })
+            universe: /a{1,3}/
+        })).toThrow(RangeError);
+    });
 });

@@ -49,6 +49,5 @@ export function pushArray(arr, toPush) {
 }
 
 function onChar(map, token) {
-    console.log("cals");
     map[token.value] = token;
 }
