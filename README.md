@@ -15,35 +15,35 @@ Generate all possible combinations given a regular expression.
 The way of use if shown below:
 
 ```js
-import {generateRegExp} from 'regexp-enumerator';
+import enumerateRegExp from 'regexp-enumerator';
 
 var regexp = /[ab]/;
 var options = {};
 
-var result = generateRegExp(regexp, options).sort();
+var result = enumerateRegExp(regexp, options).sort();
 // result is ['a', 'b']
 ```
 
 You are also allowed to use '*' and '+' operator using the maxSize operator on the options
 
 ```js
-import {generateRegExp} from 'regexp-enumerator';
+import enumerateRegExp from 'regexp-enumerator';
 
 var regexp = /a*/;
 var options = {
     maxSize: 4
 };
 
-var result = generateRegExp(regexp, options).sort();
+var result = enumerateRegExp(regexp, options).sort();
 // result is ['', 'a', 'aa', 'aaa', 'aaaa']
 ```
 
 If you use the not operator, you should provide the character universe allowed (a regular expression).
 
 ```js
-import {generateRegExp} from 'regexp-enumerator';
+import enumerateRegExp from 'regexp-enumerator';
 
-var result = generate(/[^ab]*/, {
+var result = enumerateRegExp(/[^ab]*/, {
             maxSize: 2,
             universe: /[a-f]/
         }).sort();
