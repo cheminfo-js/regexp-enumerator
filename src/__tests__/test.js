@@ -38,6 +38,13 @@ describe('test generator', () => {
         expect(output).toEqual(expected);
     });
 
+    it('simple universe test', () => {
+        var output = generate(/[^ab]/, {
+            universe: /abcd/
+        });
+        expect(output).toEqual(['c', 'd']);
+    });
+
     it('Set operator', () => {
         var output = generate(/[ab]*/, {
             maxSize: 3,
@@ -45,7 +52,11 @@ describe('test generator', () => {
         }).sort();
         var expected = ['', 'a', 'aa', 'aaa', 'aab', 'ab', 'aba', 'abb', 'b', 'ba', 'baa', 'bab', 'bb', 'bba', 'bbb'];
         expect(output).toEqual(expected);
+    });
 
+    it('Range test', () => {
+        var output = generate(/[a-c]/, {});
+        expect(output).toEqual(['a', 'b', 'c']);
     });
 
     it('Set with negate operator', () => {
@@ -91,4 +102,11 @@ describe('test generator', () => {
         var expected = ['a', 'b'];
         expect(output).toEqual(expected);
     });
+
+    it('throw error on bad selected universe', () => {
+
+        expect(() => generate('[ab]', {
+                universe: /a{1,3}/
+            })).toThrow(RangeError);
+    })
 });

@@ -9,7 +9,7 @@ export function createCharMap(tokens) {
     for (var i = 0; i < tokens.length; ++i) {
         var currentToken = tokens[i];
         if (!allowedTypes.includes(currentToken.type)) {
-            throw new RangeError('charSet must be a regexp of letters!');
+            throw new RangeError('universe must be a regexp of letters');
         }
 
         call[currentToken.type](map, currentToken);
@@ -49,5 +49,6 @@ export function pushArray(arr, toPush) {
 }
 
 function onChar(map, token) {
+    console.log("cals");
     map[token.value] = token;
 }

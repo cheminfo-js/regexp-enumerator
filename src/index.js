@@ -19,6 +19,7 @@ export function generateRegExp(regexp, options = {}) {
     var tokens = ret(source);
 
     var charSetTokens = ret(universe.source);
+
     if (charSetTokens.stack[0].set) {
         var charMap = createRegexpMap(charSetTokens.stack[0].set);
     } else {
