@@ -1,7 +1,7 @@
 {
-  "name": "exp-generator",
+  "name": "regexp-enumerator",
   "version": "0.0.0",
-  "description": "Generate all possible combinations given a expresion",
+  "description": "Generate all string combinations given a regular expression",
   "main": "lib/index.js",
   "module": "src/index.js",
   "files": [
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo/exp-generator.git"
+    "url": "git+https://github.com/cheminfo/regexp-enumerator.git"
   },
   "keywords": [],
   "author": "Jefferson Hernandez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo/exp-generator/issues"
+    "url": "https://github.com/cheminfo/regexp-enumerator/issues"
   },
-  "homepage": "https://github.com/cheminfo/exp-generator#readme",
+  "homepage": "https://github.com/cheminfo/regexp-enumerator#readme",
   "jest": {
     "testEnvironment": "node"
   },
@@ -37,5 +37,8 @@
     "jest": "^21.1.0",
     "npm-run-all": "^4.1.1",
     "rollup": "^0.50.0"
+  },
+  "dependencies": {
+    "ret": "^0.1.15"
   }
 }
