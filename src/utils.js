@@ -8,7 +8,7 @@ export function createCharMap(tokens) {
     var map = {};
     for (var i = 0; i < tokens.length; ++i) {
         var currentToken = tokens[i];
-        if (!allowedTypes.includes(currentToken.type)) {
+        if (allowedTypes.indexOf(currentToken.type) === -1) {
             throw new RangeError('universe must be a regexp of letters');
         }
 

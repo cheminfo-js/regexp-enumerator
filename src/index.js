@@ -1,6 +1,11 @@
 import ret from 'ret';
 import {createCharMap, pushArray, createRegexpMap} from './utils';
 
+const defaultOptions = {
+    maxSize: 10,
+    universe: /[a-z]/
+};
+
 /**
  * Function that generates all possible strings given a regular expression.
  * @param {string|regexp} regexp - regular expression to use
@@ -10,11 +15,8 @@ import {createCharMap, pushArray, createRegexpMap} from './utils';
  * @return {Array} - generated string given the regular expression.
  */
 export default function enumerateRegExp(regexp, options) {
-    options = options || {};
-    var {
-        maxSize = 10,
-        universe = /[a-z]/
-    } = options;
+    options = Object.assign({}, defaultOptions, options);
+    var universe = options.universe;
 
     var source = typeof regexp === 'string' ? regexp : regexp.source;
     var tokens = ret(source);
@@ -30,7 +32,7 @@ export default function enumerateRegExp(regexp, options) {
     return generate(tokens, [''], {
         tokens: tokens,
         charMap: charMap,
-        infSize: maxSize
+        infSize: options.maxSize
     });
 }
 
