@@ -52,7 +52,7 @@ var result = enumerateRegExp(/[^ab]*/, {
 
 The default value for `universe` and `maxSize` are `/[a-z]/` and `10` respectively.
 
-## [API Documentation](https://cheminfo.github.io/regexp-enumerator/)
+## [API Documentation](https://cheminfo-js.github.io/regexp-enumerator/)
 
 ## License
 
