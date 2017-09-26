@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo/regexp-enumerator.git"
+    "url": "git+https://github.com/cheminfo-js/regexp-enumerator.git"
   },
   "keywords": [],
   "author": "Jefferson Hernandez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo/regexp-enumerator/issues"
+    "url": "https://github.com/cheminfo-js/regexp-enumerator/issues"
   },
-  "homepage": "https://github.com/cheminfo/regexp-enumerator#readme",
+  "homepage": "https://github.com/cheminfo-js/regexp-enumerator#readme",
   "jest": {
     "testEnvironment": "node"
   },
