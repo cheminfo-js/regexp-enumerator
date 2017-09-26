@@ -60,7 +60,7 @@ The default value for `universe` and `maxSize` are `/[a-z]/` and `10` respective
 
 [npm-image]: https://img.shields.io/npm/v/regexp-enumerator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/regexp-enumerator
-[travis-image]: https://img.shields.io/travis/cheminfo/regexp-enumerator/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cheminfo/regexp-enumerator
+[travis-image]: https://img.shields.io/travis/cheminfo-js/regexp-enumerator/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/cheminfo-js/regexp-enumerator
 [download-image]: https://img.shields.io/npm/dm/regexp-enumerator.svg?style=flat-square
 [download-url]: https://www.npmjs.com/package/regexp-enumerator
