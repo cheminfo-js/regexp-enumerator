@@ -1,6 +1,6 @@
 {
   "name": "regexp-enumerator",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Generate all string combinations given a regular expression",
   "main": "lib/index.js",
   "module": "src/index.js",
